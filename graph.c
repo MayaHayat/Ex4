@@ -23,16 +23,16 @@ pnode createNewNodeNext(int num, pnode next){
 }
 
 pedge createNewEdge(int weight, pnode endPoint, pedge nextEdge){
-    pedge new_Edge = (pedge)malloc(sizeof(edge));
-    if (new_Edge == NULL){
+    pedge newEdge = (pedge)malloc(sizeof(edge));
+    if (newEdge == NULL){
         printf("couldn't allocate space!");
         return NULL;
     }
-    new_Edge->next = nextEdge;
-    new_Edge->endpoint = endPoint;
-    new_Edge->weight = weight;
+    newEdge->next = nextEdge;
+    newEdge->endpoint = endPoint;
+    newEdge->weight = weight;
 
-    return new_Edge;
+    return newEdge;
 }
 
 
@@ -78,12 +78,12 @@ void removeOneEdgeEntring(pnode first, pnode second){
 }
 
 void removeExiting(pnode n){
-    pedge ed = n->edges;
-    while (ed)
-    {
-        pedge e = ed;
-        ed = ed->next;
-        free(e);
+    pedge current = n->edges;
+    while (current){
+        //Removes all edges going out from node.
+        pedge temp = current;
+        current = current->next;
+        free(temp);
     }
 }
 
@@ -117,17 +117,17 @@ void printGraph_cmd(pnode head) {
     printf("\n");
 }
 
-int *deletePlace(int arr[], int length, int k){
+int *deletePlace(int old[], int length, int num){
     int *newArray = (int*)malloc(sizeof(int)*length-1);
     if (newArray == NULL){
         printf("Error! couldn't allocate space.");
         return NULL;
     }
-    for (int i = 0; i < k; i++){
-            newArray[i] = arr[i];
+    for (int i = 0; i < num; i++){
+            newArray[i] = old[i];
     }
-    for (int i = k+1 ; i < length ; i++){
-        newArray[i-1]= arr[i];
+    for (int i = num+1 ; i < length ; i++){
+        newArray[i-1]= old[i];
     }
     
     return newArray;
@@ -144,9 +144,9 @@ int findEmpty(int visited[], int size){
     return count;
 }
 
-pnode getHead(int k){
+pnode getHead(int num){
     pnode head = NULL;
-    int count = k;
+    int count = num;
     while (count >= 0){
         head = createNewNodeNext(count,head);
         count--;
