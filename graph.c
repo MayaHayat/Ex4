@@ -100,18 +100,23 @@ void removeEdgesBetweenNodes(pnode first, pnode second){
 
 
 void printGraph_cmd(pnode head) {
+    int endPoint, weight;
     pnode iterating = head;
     pedge currentEdge = NULL;
-
-    while(iterating != NULL) {
-        printf("NodeNum:  %d { Edges:\t ,", iterating->node_num);
+    while(iterating ) {
+        printf("Start node :  %d ", iterating->node_num);
         currentEdge = NULL;
         currentEdge = iterating->edges;
-        while(currentEdge != NULL) {
-            printf("endPoint = %d, weight = %d , ", currentEdge->endpoint->node_num, currentEdge->weight);
+        printf("Edges: ");
+        int count = 0;
+        while(currentEdge) {
+            endPoint = currentEdge->endpoint->node_num;
+            weight = currentEdge->weight;
+            printf("%d. endPoint: %d, weight: %d , ", count,endPoint, weight);
+            count++;
             currentEdge = currentEdge->next;
         }
-        printf("}\n");
+        printf("\n");
         iterating = iterating->next;
     }
     printf("\n");
