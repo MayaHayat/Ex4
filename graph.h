@@ -28,6 +28,6 @@ void printGraph_cmd(pnode head); //for self debug
 int shortsPath_cmd(pnode head, int start, int endPoint);
 int TSP_cmd(pnode head);
 int findEmpty(int visited[], int size);
-int *deletePlace(int arr[], int length, int num);
+int *deletePlace(int old[], int length, int num);
 
 #endif
