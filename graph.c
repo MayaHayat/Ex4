@@ -180,15 +180,15 @@ void deleteGraph_cmd(pnode *head){
 
 void build_graph_cmd(pnode *head){
     int num= -1;
-    pedge prev = NULL;
+    pedge tempEdge = NULL;
     scanf("%d", &num);
     pnode current = findNode(*head, num);
     while(scanf("%d", &num)==1){
         pnode endPoint = findNode(*head, num);
         scanf("%d", &num);
-        prev = createNewEdge(num,endPoint,prev);
+        tempEdge = createNewEdge(num,endPoint,tempEdge);
     }
-    current->edges = prev;
+    current->edges = tempEdge;
 }
 
 
